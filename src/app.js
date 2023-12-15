@@ -38,12 +38,12 @@ app.get('/profile', (req, res) => {
       return res.status(401).json({ message: 'Authorization required' });
     }
     const decodedToken = jwt.verify(token, secretKey)
-    return res.json({
+    return res.status(201).json({
       "message": "Profile data",
       "user": decodedToken
     })
   } catch (error) {
-    return res.status(401).json({ message: 'Authorization required' });
+    return res.status(401).json({ message: 'Invalid token' });
     
   }
   // Middleware to check for a valid JWT token
